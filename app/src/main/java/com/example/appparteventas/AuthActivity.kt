@@ -49,7 +49,7 @@ class AuthActivity : AppCompatActivity() {
 
 
     private fun setup() {
-        title = "Login"
+        title = "Login y Registro"
         registrarButton.setOnClickListener {
             if (emailET.text.isNotEmpty() && passwordET.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
