@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="marcas">
+    <item>Giro</item>
+    <item>Bell</item>
+    <item>Sram</item>
+    <item>Camelbak</item>
+    <item>EoVolt</item>
+    <item>Slime</item>
+    <item>ParkToll</item>
+    <item>Maxxis</item>
+    </string-array>
+
+    <string-array name="formaDePago">
+        <item>Giro 8 días 1% dto</item>
+        <item>Giro 30 días</item>
+        <item>Giro 30/60</item>
+        <item>Giro 30/60/90</item>
+        <item>Giro 30/60/90/120</item>
+        <item>Transferencia</item>
+        <item>Confirming</item>
+    </string-array>
+    
+    
+</resources>

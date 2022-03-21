@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.appparteventas">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,19 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppParteVentas">
-
+        <activity
+            android:name=".MarcasActivity"
+            android:exported="false"
+            />
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
-
+            android:exported="false"
+             />
         <activity
             android:name=".AuthActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
