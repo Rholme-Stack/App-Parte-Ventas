@@ -6,15 +6,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home.*
-import java.sql.Timestamp
-import java.util.*
-import com.google.firebase.firestore.ServerTimestamp as ServerTimestamp
-import java.util.Date as UtilDate
 
 enum class ProviderType {
     BASIC
@@ -45,12 +43,28 @@ class HomeActivity : AppCompatActivity() {
         prefs.putString("provider", provider)
         prefs.apply()
 
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        val spinnerTipoVisit: Spinner = findViewById(R.id.tipoDeVisitaSpinner)
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.tipoDeVisita,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinnerTipoVisit.adapter = adapter
+        }
+
+
     }
 
     private fun setup(email:String, provider: String) {
         title = "Inicio"
-        emailtextView.text= email
+        emailTextView.text= email
         providertextView.text= provider
+
+
 
 
        //boton de logout
@@ -68,8 +82,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         //boton de guardar en firestore
-        save_imageButton.setOnClickListener{
-           if(clienteET.text.isEmpty() && comentariosMultiLine.text.isEmpty()) {
+        saveMarcas_imageButton.setOnClickListener{
+           if(cliente_ET.text.isEmpty() && comentariosMultiLine.text.isEmpty()) {
                val builder = AlertDialog.Builder(this)
                builder.setTitle("Error")
                builder.setMessage("Es necesário poner el cliente y comentarios generales!")
@@ -78,12 +92,21 @@ class HomeActivity : AppCompatActivity() {
                dialog.show()
 
            }else{
+               //crea el objeto
+                   var t = Visitas()
+                    t.cliente = cliente_ET.text.toString()
+                    t.comentarios= comentariosMultiLine.text.toString()
+
+
+
+
+
                //se crea una variable con el hashmap
 
 
-               val vendedor = hashMapOf("vendedor" to emailtextView.text.toString(),
-                   "cliente" to clienteET.text.toString(),
-                   "comentarios" to comentariosMultiLine.text.toString(),
+               val vendedor = hashMapOf("vendedor" to emailTextView.text.toString(),
+                   "cliente" to t.cliente,
+                   "comentarios" to t.comentarios,
                    "fecha" to FieldValue.serverTimestamp(),
                             )
 
@@ -119,7 +142,7 @@ class HomeActivity : AppCompatActivity() {
 
         edit_imageButton.setOnClickListener{
             db.collection("vendedores").document(email).get().addOnSuccessListener {
-                clienteET.setText(it.get("cliente")as String?)
+                cliente_ET.setText(it.get("cliente")as String?)
                 comentariosMultiLine.setText(it.get("comentarios")as String?)
             }
             //pantalla dfe aviso de guardado
@@ -162,7 +185,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun limpiarCajas() {
         //funciona para limpiar cajas
-        clienteET.setText("")
+        cliente_ET.setText("")
         comentariosMultiLine.setText("")
     }
 }

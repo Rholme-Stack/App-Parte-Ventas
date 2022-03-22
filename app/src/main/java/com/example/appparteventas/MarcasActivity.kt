@@ -6,6 +6,10 @@ import android.widget.ArrayAdapter
 import android.widget.NumberPicker
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.view.get
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.saveMarcas_imageButton
+import kotlinx.android.synthetic.main.activity_marcas.*
 
 class MarcasActivity : AppCompatActivity() {
 
@@ -62,7 +66,16 @@ class MarcasActivity : AppCompatActivity() {
 
 
 
+        saveMarcas_imageButton.setOnClickListener {
+            var t = Marcas()
+            t.marca = marcaSpinner.selectedItem.toString()
+            t.formaDepago = formaDePagospinner.selectedItem.toString()
+            t.descuento = dtoNumberPicker.value.toInt()
+            t.cometariosMarcas = comentariosMultiLineMarcas1.text.toString()
 
+
+
+        }
 
 
     }

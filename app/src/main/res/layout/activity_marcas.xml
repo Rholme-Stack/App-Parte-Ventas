@@ -74,7 +74,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/emailtextView"
+                    android:id="@+id/emailTextView"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:text="@string/email"
@@ -144,7 +144,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/dtoTextView"
+                    android:id="@+id/clienteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Descuento"
@@ -160,7 +160,7 @@
                     android:layout_height="15dp" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/comentariosTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Comentarios de la Marca"
@@ -168,7 +168,7 @@
                     android:textColor="@color/gris" />
 
                 <EditText
-                    android:id="@+id/comentariosMultiLine"
+                    android:id="@+id/comentariosMultiLineMarcas1"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:background="@color/material_dynamic_neutral90"
@@ -214,7 +214,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/save_imageButton"
+            android:id="@+id/saveMarcas_imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

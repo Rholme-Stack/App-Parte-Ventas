@@ -21,6 +21,13 @@
         <item>Transferencia</item>
         <item>Confirming</item>
     </string-array>
-    
-    
+
+    <string-array name="tipoDeVisita">
+        <item>Cortesia</item>
+        <item>Formación</item>
+        <item>Apertura</item>
+        <item>Venta</item>
+        <item>Presentación Marcas</item>
+        <item>Gestión de cobros</item>
+    </string-array>
 </resources>
