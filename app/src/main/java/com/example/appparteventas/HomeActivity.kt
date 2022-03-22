@@ -6,9 +6,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.NumberPicker
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -168,13 +171,144 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-        //boton añadir marca
-        marcaButton.setOnClickListener{
-            val homeIntent = Intent(this, MarcasActivity::class.java).apply {
+        //boton añadir marca 1
+        anadirMarcaButton.setOnClickListener{
+
+            anadirMarcaButton.visibility = View.GONE
+            marca1Container.isVisible= true
+
+            //setup spiner y number picker marca 1
+
+
+            val spinnerMarca1: Spinner = findViewById(R.id.marca1Spinner)
+            ArrayAdapter.createFromResource(
+                this,
+                R.array.marcas,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinnerMarca1.adapter = adapter
+            }
+
+
+            val spinnerFormaPago1: Spinner = findViewById(R.id.formaDePago1Spinner)
+            ArrayAdapter.createFromResource(
+                this,
+                R.array.formaDePago,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinnerFormaPago1.adapter = adapter
+            }
+
+            //numeber picker dto
+
+            //number picker numerico de 1 a 30
+            val n1: NumberPicker = findViewById (R.id.dto1NumberPicker)
+            n1.minValue =0
+            n1.maxValue =30
+            n1.wrapSelectorWheel = true
+            n1.setOnValueChangedListener { picker, oldVal, newVal ->
 
             }
-            startActivity(homeIntent)
 
+
+
+        }
+
+        //boton añadir marca 2
+        anadirMarca1Button.setOnClickListener{
+
+            anadirMarca1Button.visibility = View.GONE
+            marca2Container.isVisible= true
+
+            //setup spiner y number picker marca 2
+
+
+            val spinnerMarca2: Spinner = findViewById(R.id.marca2Spinner)
+            ArrayAdapter.createFromResource(
+                this,
+                R.array.marcas,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinnerMarca2.adapter = adapter
+            }
+
+
+            val spinnerFormaPago2: Spinner = findViewById(R.id.formaDePago2Spinner)
+            ArrayAdapter.createFromResource(
+                this,
+                R.array.formaDePago,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinnerFormaPago2.adapter = adapter
+            }
+
+            //numeber picker dto
+
+            //number picker numerico de 1 a 30
+            val n2: NumberPicker = findViewById (R.id.dto2NumberPicker)
+            n2.minValue =0
+            n2.maxValue =30
+            n2.wrapSelectorWheel = true
+            n2.setOnValueChangedListener { picker, oldVal, newVal ->
+
+            }
+        }
+
+        //boton añadir marca 3
+        anadirMarca2Button2.setOnClickListener{
+            anadirMarca2Button2.visibility = View.GONE
+            marca3Container.isVisible= true
+
+            //setup spiner y number picker marca 3
+
+
+            val spinnerMarca3: Spinner = findViewById(R.id.marca3Spinner)
+            ArrayAdapter.createFromResource(
+                this,
+                R.array.marcas,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinnerMarca3.adapter = adapter
+            }
+
+
+            val spinnerFormaPago3: Spinner = findViewById(R.id.formaDePago3Spinner)
+            ArrayAdapter.createFromResource(
+                this,
+                R.array.formaDePago,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                // Apply the adapter to the spinner
+                spinnerFormaPago3.adapter = adapter
+            }
+
+            //numeber picker dto
+
+            //number picker numerico de 1 a 30
+            val n3: NumberPicker = findViewById (R.id.dto3NumberPicker)
+            n3.minValue =0
+            n3.maxValue =30
+            n3.wrapSelectorWheel = true
+            n3.setOnValueChangedListener { picker, oldVal, newVal ->
+
+            }
         }
 
 

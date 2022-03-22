@@ -75,6 +75,12 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"></LinearLayout>
+
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
@@ -118,7 +124,7 @@
                     android:id="@+id/cliente_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:background="@color/grisClaro"
                     android:hint="Nombre de cliente"
                     android:ems="10"
                     android:inputType="textPersonName"
@@ -160,7 +166,7 @@
                     android:id="@+id/comentariosMultiLine"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-
+                    android:background="@color/grisClaro"
                     android:ems="10"
                     android:gravity="start|top"
                     android:hint="Escriba aquí."
@@ -169,10 +175,12 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
+
                     android:layout_weight="1" />
 
+
                 <Button
-                    android:id="@+id/marcaButton"
+                    android:id="@+id/anadirMarcaButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blue"
@@ -181,24 +189,368 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="10dp" />
+                    android:layout_height="65dp" />
 
-                <Button
-                    android:id="@+id/imagenButton"
+                <LinearLayout
+                    android:id="@+id/marca1Container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/blue"
-                    android:text="AÑADIR IMAGENES"
-                    android:textColor="#ffffff" />
-
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="11dp"
+                        android:layout_weight="1"
+                        android:background="@color/gris" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/marca1TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Marca 1"
+                        android:textColor="@color/gris"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/marca1Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/fomaPago1TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Forma de Pago"
+                        android:textColor="@color/gris" />
+
+                    <Spinner
+                        android:id="@+id/formaDePago1Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:contentDescription="Escojer una forma de pago"
+                        android:tooltipText="Escoger forma de pago" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/descuento1TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Descuento"
+                        android:textColor="@color/gris" />
+
+                    <NumberPicker
+                        android:id="@+id/dto1NumberPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/comentarios1TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:text="Comentarios de la Marca"
+                        android:textColor="@color/gris" />
+
+                    <EditText
+                        android:id="@+id/comentarios1MultiLineMarcas"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        android:background="@color/grisClaro"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="Escriba aquí."
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/browser_actions_title_color"
+                        android:textColorHint="@color/browser_actions_title_color" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/anadirMarca1Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/blue"
+                        android:text="AÑADIR MARCA"
+                        android:textColor="#ffffff" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/marca2Container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="11dp"
+                        android:layout_weight="1"
+                        android:background="@color/gris" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/marca2TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Marca 2"
+                        android:textColor="@color/gris"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/marca2Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/fomaPago2TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Forma de Pago"
+                        android:textColor="@color/gris" />
+
+                    <Spinner
+                        android:id="@+id/formaDePago2Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:contentDescription="Escojer una forma de pago"
+                        android:tooltipText="Escoger forma de pago" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/descuento2TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Descuento"
+                        android:textColor="@color/gris" />
+
+                    <NumberPicker
+                        android:id="@+id/dto2NumberPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/comentarios2TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:text="Comentarios de la Marca"
+                        android:textColor="@color/gris" />
+
+                    <EditText
+                        android:id="@+id/comentarios2MultiLineMarcas"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        android:background="@color/grisClaro"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="Escriba aquí."
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/browser_actions_title_color"
+                        android:textColorHint="@color/browser_actions_title_color" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/anadirMarca2Button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/blue"
+                        android:text="AÑADIR MARCA"
+                        android:textColor="#ffffff" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/marca3Container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="11dp"
+                        android:layout_weight="1"
+                        android:background="@color/gris" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/marca3TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Marca 3 "
+                        android:textColor="@color/gris"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/marca3Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/fomaPago3TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Forma de Pago"
+                        android:textColor="@color/gris" />
+
+                    <Spinner
+                        android:id="@+id/formaDePago3Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:contentDescription="Escojer una forma de pago"
+                        android:tooltipText="Escoger forma de pago" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/cliente3TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Descuento"
+                        android:textColor="@color/gris" />
+
+                    <NumberPicker
+                        android:id="@+id/dto3NumberPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/comentarios3TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:text="Comentarios de la Marca"
+                        android:textColor="@color/gris" />
+
+                    <EditText
+                        android:id="@+id/comentarios3MultiLineMarcas"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        android:background="@color/grisClaro"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="Escriba aquí."
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/browser_actions_title_color"
+                        android:textColorHint="@color/browser_actions_title_color" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                " />
 
             </LinearLayout>
         </ScrollView>
