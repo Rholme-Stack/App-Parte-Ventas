@@ -6,9 +6,22 @@ class Visitas {
         get() = field
         set(value) { field= value}
 
+    var tipoVisita: String = ""
+        get() = field
+        set(value) { field= value}
+
+
     var comentarios: String = ""
         get() = field
         set(value) { field= value}
+
+
+
+
+
+
+
+
 
 
     constructor(){

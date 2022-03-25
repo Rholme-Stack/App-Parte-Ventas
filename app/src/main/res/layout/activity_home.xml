@@ -121,14 +121,15 @@
 
 
                 <EditText
-                    android:id="@+id/cliente_ET"
+                    android:id="@+id/clienteET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grisClaro"
-                    android:hint="Nombre de cliente"
                     android:ems="10"
+                    android:hint="Nombre de cliente"
                     android:inputType="textPersonName"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    android:textColorHint="#546E7A" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -567,29 +568,26 @@
         android:orientation="horizontal"
         >
 
-        <ImageButton
-            android:id="@+id/saveMarcas_imageButton"
+        <Button
+            android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_save"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:text="Save" />
 
-        <ImageButton
-            android:id="@+id/edit_imageButton"
+        <Button
+            android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_edit"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:text="Edit" />
 
-        <ImageButton
-            android:id="@+id/delete_imageButton"
+        <Button
+            android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_delete"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:text="Delete" />
 
         <Button
             android:id="@+id/finalizarButton"

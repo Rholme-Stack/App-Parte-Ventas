@@ -2,7 +2,9 @@ package com.example.appparteventas
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Insets.add
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +13,14 @@ import android.widget.ArrayAdapter
 import android.widget.NumberPicker
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.get
 import androidx.core.view.isVisible
+import com.example.appparteventas.databinding.ActivityHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home.*
+
 
 enum class ProviderType {
     BASIC
@@ -24,11 +29,15 @@ enum class ProviderType {
 
 class HomeActivity : AppCompatActivity() {
 
+
+    private lateinit var binding: ActivityHomeBinding
+
     private val db= FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+         binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //Quita la toolbar
         getSupportActionBar()?.hide()
@@ -64,16 +73,16 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setup(email:String, provider: String) {
         title = "Inicio"
-        emailTextView.text= email
-        providertextView.text= provider
+        binding.emailTextView.text= email
+        binding.providertextView.text= provider
 
 
 
 
        //boton de logout
-        finalizarButton.setOnClickListener {
+        binding.finalizarButton.setOnClickListener {
 
-
+          
             //borrado de datos
             val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
             prefs.clear()
@@ -85,8 +94,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         //boton de guardar en firestore
-        saveMarcas_imageButton.setOnClickListener{
-           if(cliente_ET.text.isEmpty() && comentariosMultiLine.text.isEmpty()) {
+        binding.saveButton.setOnClickListener{
+           if(binding.clienteET.text.isEmpty() && binding.comentariosMultiLine.text.isEmpty()) {
                val builder = AlertDialog.Builder(this)
                builder.setTitle("Error")
                builder.setMessage("Es necesário poner el cliente y comentarios generales!")
@@ -97,8 +106,29 @@ class HomeActivity : AppCompatActivity() {
            }else{
                //crea el objeto
                    var t = Visitas()
-                    t.cliente = cliente_ET.text.toString()
-                    t.comentarios= comentariosMultiLine.text.toString()
+                    t.cliente = binding.clienteET.text.toString()
+                    t.tipoVisita = binding.tipoDeVisitaSpinner.selectedItem.toString()
+                    t.comentarios= binding.comentariosMultiLine.text.toString()
+
+                    var m1 = Marcas()
+                    var m2 = Marcas()
+                    var m3 = Marcas()
+                    m1.marca1 = binding.marca1Spinner.selectedItem.toString()
+                    m1.formaPago1 = binding.formaDePago1Spinner.selectedItem.toString()
+                    m1.dto1 = binding.dto1NumberPicker.value.toString()
+                    m1.comentarios1 = binding.comentarios1MultiLineMarcas.text.toString()
+
+                        m2.marca2 = binding.marca2Spinner.selectedItem.toString()
+                       m2.formaPago2 = binding.formaDePago2Spinner.selectedItem.toString()
+                       m2.dto2 = binding.dto2NumberPicker.value.toString()
+                       m2.comentarios2 = binding.comentarios2MultiLineMarcas.text.toString()
+
+                           m3.marca3 = binding.marca3Spinner.selectedItem.toString()
+                           m3.formaPago3 = binding.formaDePago3Spinner.selectedItem.toString()
+                           m3.dto3 = binding.dto3NumberPicker.value.toString()
+                           m3.comentarios3 = binding.comentarios3MultiLineMarcas.text.toString()
+
+
 
 
 
@@ -107,17 +137,58 @@ class HomeActivity : AppCompatActivity() {
                //se crea una variable con el hashmap
 
 
-               val vendedor = hashMapOf("vendedor" to emailTextView.text.toString(),
+               val vendedor = hashMapOf("vendedor" to binding.emailTextView.text.toString(),
                    "cliente" to t.cliente,
+                   "Tipo de Visita" to t.tipoVisita,
                    "comentarios" to t.comentarios,
                    "fecha" to FieldValue.serverTimestamp(),
-                            )
+               )
+
+                val marca1 = hashMapOf("Marca 1" to m1.marca1,
+                    "Forma de pago" to m1.formaPago1,
+                    "Descuento" to m1.dto1,
+                    "Comentarios" to m1.comentarios1,
+                )
+
+               val marca2 = hashMapOf("Marca 2" to m2.marca2,
+                   "Forma de pago" to m2.formaPago2,
+                   "Descuento" to m2.dto2,
+                   "Comentarios" to m2.comentarios2,
+               )
+
+               val marca3 = hashMapOf("Marca 3" to m3.marca3,
+                   "Forma de pago" to m3.formaPago3,
+                   "Descuento" to m3.dto3,
+                   "Comentarios" to m3.comentarios3,
+               )
+
+
+
+
 
                //añade a la base de datos
-               db.collection("vendedores")
-                   .add(vendedor)
-                   .addOnSuccessListener { documentReference ->
-                       Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+               val nuevaVisita = db
+                   .collection("vendedores")
+               nuevaVisita.add(vendedor)
+
+                   .addOnSuccessListener {documentReference ->
+                       Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+                      val marcaM1 = db
+                          .collection("vendedores").document("${documentReference.id}")
+                          .collection("Marcas Presentadas").document("Marcas1")
+                       marcaM1.set(marca1)
+                       val marcaM2 = db
+                           .collection("vendedores").document("${documentReference.id}")
+                           .collection("Marcas Presentadas").document("Marcas2")
+                       marcaM2.set(marca2)
+                       val marcaM3 = db
+                           .collection("vendedores").document("${documentReference.id}")
+                           .collection("Marcas Presentadas").document("Marcas3")
+                       marcaM3.set(marca3)
+
+
+
+
 
                        //pantalla de aviso de guardado
                        val builder = AlertDialog.Builder(this)
@@ -143,10 +214,10 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
-        edit_imageButton.setOnClickListener{
+        binding.editButton.setOnClickListener{
             db.collection("vendedores").document(email).get().addOnSuccessListener {
-                cliente_ET.setText(it.get("cliente")as String?)
-                comentariosMultiLine.setText(it.get("comentarios")as String?)
+                binding.clienteET.setText(it.get("cliente")as String?)
+                binding.comentariosMultiLine.setText(it.get("comentarios")as String?)
             }
             //pantalla dfe aviso de guardado
             val builder = AlertDialog.Builder(this)
@@ -157,7 +228,7 @@ class HomeActivity : AppCompatActivity() {
             dialog.show()
         }
 
-        delete_imageButton.setOnClickListener{
+        binding.deleteButton.setOnClickListener{
             db.collection("Users").document(email).delete()
 
             //pantalla dfe aviso de eliminado
@@ -172,10 +243,10 @@ class HomeActivity : AppCompatActivity() {
 
 
         //boton añadir marca 1
-        anadirMarcaButton.setOnClickListener{
+        binding.anadirMarcaButton.setOnClickListener{
 
-            anadirMarcaButton.visibility = View.GONE
-            marca1Container.isVisible= true
+            binding.anadirMarcaButton.visibility = View.GONE
+            binding.marca1Container.isVisible= true
 
             //setup spiner y number picker marca 1
 
@@ -221,10 +292,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         //boton añadir marca 2
-        anadirMarca1Button.setOnClickListener{
+        binding.anadirMarca1Button.setOnClickListener{
 
-            anadirMarca1Button.visibility = View.GONE
-            marca2Container.isVisible= true
+            binding.anadirMarca1Button.visibility = View.GONE
+            binding.marca2Container.isVisible= true
 
             //setup spiner y number picker marca 2
 
@@ -267,9 +338,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         //boton añadir marca 3
-        anadirMarca2Button2.setOnClickListener{
-            anadirMarca2Button2.visibility = View.GONE
-            marca3Container.isVisible= true
+        binding.anadirMarca2Button2.setOnClickListener{
+            binding.anadirMarca2Button2.visibility = View.GONE
+            binding.marca3Container.isVisible= true
 
             //setup spiner y number picker marca 3
 
@@ -319,8 +390,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun limpiarCajas() {
         //funciona para limpiar cajas
-        cliente_ET.setText("")
-        comentariosMultiLine.setText("")
+        binding.clienteET.setText("")
+        binding.comentariosMultiLine.setText("")
+
+        binding.marca1Container.isVisible= false
+        binding.marca2Container.isVisible= false
+        binding.marca3Container.isVisible= false
     }
 }
 
